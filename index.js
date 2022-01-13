@@ -23,6 +23,7 @@ exports.handler = async (event, context) => {
             S3Bucket: bucket,
             S3Prefix: 'textractedLineups',
         },
+        JobTag: key
     }
     console.log('startDocumentAnalysis params', params)
     const job = await textract.startDocumentAnalysis(params).promise()
