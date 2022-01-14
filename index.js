@@ -32,7 +32,7 @@ exports.handler = async (event, context) => {
     	return job	
     } 
     const leKey = 'textract-job.' + job.JobId
-    const leValue = key.match(new RegeXp('/(.*)$'))[1]
+    const leValue = key.match(new RegExp('/(.*)$'))[1]
     console.log('startDocumentAnalysis jobKey', leKey, leValue)
     await client.set(leKey, leValue)
 
