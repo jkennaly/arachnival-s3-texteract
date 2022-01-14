@@ -32,7 +32,8 @@ exports.handler = async (event, context) => {
     	console.error(params)
     	return job	
     } 
-    const leKey = 'arach-lineup.' + key
+    const leKey = 'textract-job.' + job.JobId
+    await client.set(leKey, key.match(new RegeXp('/(.*)$'))[1])
 
     return job
 };
