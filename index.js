@@ -26,14 +26,15 @@ exports.handler = async (event, context) => {
     }
     //console.log('startDocumentAnalysis params', params)
     const job = await textract.startDocumentAnalysis(params).promise()
-    console.log('startDocumentAnalysis result', job)
     if(!job || !job.JobId) {
     	console.error('No job idResult')
     	console.error(params)
     	return job	
     } 
     const leKey = 'textract-job.' + job.JobId
-    await client.set(leKey, key.match(new RegeXp('/(.*)$'))[1])
+    const leValue = key.match(new RegeXp('/(.*)$'))[1]
+    console.log('startDocumentAnalysis jobKey', leKey, leValue)
+    await client.set(leKey, leValue)
 
     return job
 };
