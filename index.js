@@ -1,7 +1,5 @@
 
 const aws = require('aws-sdk');
-const redis = require("redis")
-const client = redis.createClient({url: process.env.REDIS_URL})
 
 const textract = new aws.Textract();
 
@@ -35,11 +33,6 @@ exports.handler = async (event, context) => {
     	return job	
     } 
     const leKey = 'arach-lineup.' + key
-    await client.connect()
-  	await client.set(leKey, JSON.stringify(result), {
-		EX: 3600 * 24 * 30
-	})
-  client.quit()
 
     return job
 };
