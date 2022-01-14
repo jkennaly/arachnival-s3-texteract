@@ -2,6 +2,8 @@
 const aws = require('aws-sdk');
 
 const textract = new aws.Textract();
+const redis = require("redis")
+const client = redis.createClient({url: process.env.REDIS_URL})
 
 
 exports.handler = async (event, context) => {
